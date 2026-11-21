@@ -258,6 +258,16 @@ $ haptics360 monitor --watch</code></pre>
       <article class="card"><h3>Replay &amp; reference</h3><p>Capture a session's telemetry and audition effects offline — design a cue without turning a wheel.</p></article>
       <article class="card"><h3>Your rig, detected</h3><p>WASAPI output picker for the shaker, direct detection for the pedal — the panel shows what it found, nothing hidden.</p></article>
     </div>
+
+    <div class="chain" aria-label="Signal chain diagram">
+      <div class="chain-node"><span class="chain-num mono">360 Hz</span><b>Telemetry in</b><span class="mono-dim">sim → stream buffer</span></div>
+      <div class="chain-link" aria-hidden="true"></div>
+      <div class="chain-node"><span class="chain-num mono">predict</span><b>Lookahead</b><span class="mono-dim">few ms ahead</span></div>
+      <div class="chain-link" aria-hidden="true"></div>
+      <div class="chain-node"><span class="chain-num mono">25 Hz</span><b>Split band</b><span class="mono-dim">low / high crossover</span></div>
+      <div class="chain-link" aria-hidden="true"></div>
+      <div class="chain-node accent-node"><span class="chain-num mono">out</span><b>Two devices</b><span class="mono-dim">shaker + pedal</span></div>
+    </div>
   </section>
 
   <!-- ============ 06 · CONTROL PANEL ============ -->
