@@ -147,9 +147,24 @@
       if (sraf) cancelAnimationFrame(sraf);
       sdraw();
     }
-    fx.forEach(function (el) {
-      el.addEventListener("input", sstart);
+    // mixer cards in the panel mock mirror the live bench values
+    var mixCards = {};
+    document.querySelectorAll(".pm-card[data-mixer]").forEach(function (card) {
+      mixCards[card.dataset.mixer] = card;
     });
+    function syncMixer() {
+      fx.forEach(function (el) {
+        var card = mixCards[el.dataset.knob];
+        if (!card) return;
+        var pct = Math.round(+el.value / 2);
+        card.querySelector(".pm-slider i").style.width = pct + "%";
+        card.querySelector(".pm-meta").textContent = "gain " + pct + "% · enabled";
+      });
+    }
+    fx.forEach(function (el) {
+      el.addEventListener("input", function () { sstart(); syncMixer(); });
+    });
+    syncMixer();
     // test-fire: decaying burst on that device's channel
     document.querySelectorAll(".test-btn").forEach(function (b) {
       b.addEventListener("click", function () {
