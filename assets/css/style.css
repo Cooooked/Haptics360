@@ -420,7 +420,9 @@ img { display: block; max-width: 100%; }
   min-height: 20px;
 }
 .fx-inspect b { color: var(--accent); font-weight: 500; }
-.fx-chip { cursor: default; }
+.fx-chip { font-family: var(--sans); text-align: left; width: 100%; }
+.fx-chip[aria-pressed="false"] { opacity: .38; border-style: dashed; }
+.fx-chip[aria-pressed="false"]::after { content: " · muted"; font-family: var(--mono); font-size: 10px; color: var(--muted); }
 
 .hero-logo { height: 37px; width: auto; margin-bottom: 34px; filter: drop-shadow(0 4px 24px rgba(232,132,60,.25)); }
 @media (max-width: 900px) { .fx-groups { grid-template-columns: 1fr 1fr; } }

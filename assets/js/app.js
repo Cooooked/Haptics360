@@ -211,12 +211,25 @@
   document.querySelectorAll(".fx-chip").forEach(function (chip) {
     var show = function () {
       if (inspectBody) {
-        inspectBody.innerHTML = "<b>" + chip.textContent + "</b> — " + chip.dataset.spec;
+        var mutedTag = chip.getAttribute("aria-pressed") === "false" ? " · muted" : "";
+        inspectBody.innerHTML = "<b>" + chip.textContent.replace(" · muted", "") + "</b>" + mutedTag + " — " + chip.dataset.spec;
       }
     };
     chip.addEventListener("mouseenter", show);
     chip.addEventListener("focus", show);
-    chip.addEventListener("click", show);
+    chip.addEventListener("click", function (e) {
+      // first click selects for inspection; double-click or the mute affordance toggles
+      if (e.detail === 1) { show(); return; }
+    });
+    chip.addEventListener("dblclick", function () {
+      var on = chip.getAttribute("aria-pressed") === "true";
+      chip.setAttribute("aria-pressed", on ? "false" : "true");
+      show();
+    });
+  });
+  // explicit mute toggle: shift+click or the small corner button behaviour via title hint
+  document.querySelectorAll(".fx-chip").forEach(function (chip) {
+    chip.title = "inspect: click · mute: double-click";
   });
 
   /* ---------- scroll reveals ---------- */
