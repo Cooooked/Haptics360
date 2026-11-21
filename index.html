@@ -363,7 +363,7 @@
         <button class="pm-item" data-view="profiles" type="button">Profiles</button>
       </div>
       <div class="pm-main">
-        <div class="pm-view is-active" data-view="mixer">
+        <div class="pm-view is-active" data-view="mixer" role="region" aria-label="Mixer pane">
           <div class="pm-card">
             <div class="pm-card-head"><span>Engine sound</span><span class="mono-dim">bk.engine_sound</span></div>
             <div class="pm-slider"><i style="width:64%"></i></div>
@@ -381,31 +381,31 @@
           </div>
           <div class="pm-test mono-dim">preview &amp; test-fire per effect — audition before you commit</div>
         </div>
-        <div class="pm-view" data-view="effects">
+        <div class="pm-view" data-view="effects" role="region" aria-label="Effects pane">
           <div class="pm-card"><div class="pm-card-head"><span>engine_sound</span><span class="mono-dim">powertrain</span></div><div class="pm-slider"><i style="width:64%"></i></div><div class="pm-meta mono-dim">gain 128% · on</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>gear_shift</span><span class="mono-dim">powertrain</span></div><div class="pm-slider"><i style="width:38%"></i></div><div class="pm-meta mono-dim">gain 76% · on</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>road_vibration</span><span class="mono-dim">road</span></div><div class="pm-slider"><i style="width:52%"></i></div><div class="pm-meta mono-dim">gain 104% · on</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>traction_loss</span><span class="mono-dim">contact</span></div><div class="pm-slider"><i style="width:30%"></i></div><div class="pm-meta mono-dim">gain 60% · muted</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>custom formula</span><span class="mono-dim">custom</span></div><div class="pm-slider warm"><i style="width:44%"></i></div><div class="pm-meta mono-dim">gain 88% · on</div></div>
         </div>
-        <div class="pm-view" data-view="pedal">
+        <div class="pm-view" data-view="pedal" role="region" aria-label="Pedal pane">
           <div class="pm-card"><div class="pm-card-head"><span>ABS pulse</span><span class="mono-dim">pedal.abs</span></div><div class="pm-slider warm"><i style="width:45%"></i></div><div class="pm-meta mono-dim">gain 90% · 30 Hz · 60 ms</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>Wheel lock</span><span class="mono-dim">pedal.lock</span></div><div class="pm-slider warm"><i style="width:30%"></i></div><div class="pm-meta mono-dim">gain 60% · 32 Hz</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>Kerb / road</span><span class="mono-dim">pedal.road_impacts</span></div><div class="pm-slider warm"><i style="width:72%"></i></div><div class="pm-meta mono-dim">gain 110% · 20 Hz · sens 25</div></div>
           <div class="pm-test mono-dim">pedal channel — direct motor drive, no LFE path</div>
         </div>
-        <div class="pm-view" data-view="devices">
+        <div class="pm-view" data-view="devices" role="region" aria-label="Devices pane">
           <div class="pm-card"><div class="pm-card-head"><span>ButtKicker</span><span class="pm-badge ok">connected</span></div><div class="pm-meta mono-dim">WASAPI output · shaker band · master gain 100%</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>P-HPR pedal</span><span class="pm-badge ok">connected</span></div><div class="pm-meta mono-dim">direct drive · pedal band · force limited</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>Telemetry source</span><span class="pm-badge ok">live</span></div><div class="pm-meta mono-dim">360 Hz shared stream · 4 Hz monitor</div></div>
         </div>
-        <div class="pm-view" data-view="profiles">
+        <div class="pm-view" data-view="profiles" role="region" aria-label="Profiles pane">
           <button class="pm-card pm-prof is-active" type="button" data-prof="reference" aria-pressed="true"><div class="pm-card-head"><span>Reference</span><span class="mono-dim">active</span></div><div class="pm-meta mono-dim">all channels · default rig</div></button>
           <button class="pm-card pm-prof" type="button" data-prof="brake" aria-pressed="false"><div class="pm-card-head"><span>Brake focus</span><span class="mono-dim">pedal-heavy</span></div><div class="pm-meta mono-dim">ABS + lock emphasis · shaker eased</div></button>
           <button class="pm-card pm-prof" type="button" data-prof="road" aria-pressed="false"><div class="pm-card-head"><span>Road focus</span><span class="mono-dim">shaker-heavy</span></div><div class="pm-meta mono-dim">surface + impacts · pedal light</div></button>
           <div class="pm-test mono-dim">save current mix as a profile — recall per rig or per sim</div>
         </div>
-        <div class="pm-view" data-view="monitor">
+        <div class="pm-view" data-view="monitor" role="region" aria-label="Monitor pane">
           <div class="pm-card"><div class="pm-card-head"><span>Shaker out</span><span class="pm-badge ok">-12 dB</span></div><div class="pm-meta mono-dim">rms <b class="live-v" data-v="-18.4" data-j="0.8" data-d="1">-18.4</b> · peak <b class="live-v" data-v="-6.1" data-j="1.4" data-d="1">-6.1</b> · clipping 0%</div><div class="pm-meter"><i id="meterBk"></i></div></div>
           <div class="pm-card"><div class="pm-card-head"><span>Pedal out</span><span class="pm-badge ok">-9 dB</span></div><div class="pm-meta mono-dim">rms <b class="live-v" data-v="-15.2" data-j="0.9" data-d="1">-15.2</b> · peak <b class="live-v" data-v="-3.8" data-j="1.2" data-d="1">-3.8</b> · force <b class="live-v" data-v="62" data-j="7" data-d="0">62</b>%</div><div class="pm-meter"><i id="meterPd"></i></div></div>
           <div class="pm-card"><div class="pm-card-head"><span>Pipeline</span><span class="mono-dim">engine</span></div><div class="pm-meta mono-dim">360 Hz in · 0.8 ms playout · queue <b class="live-v" data-v="2" data-j="3" data-d="0">2</b>%</div></div>
