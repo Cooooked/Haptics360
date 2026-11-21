@@ -137,7 +137,7 @@
         <p class="card-sub">The body channel — low frequencies, sustained cues.</p>
         <ul class="check-list">
           <li><b>Native LFE passthrough</b> — the game's own low-frequency effects, levelled and limited.</li>
-          <li><b>Synthesised ShakeIt effects</b> — engine, gears, kerbs and impacts rendered as motor drive.</li>
+          <li><b>Synthesised effects</b> — engine, gears, kerbs and impacts rendered as motor drive.</li>
           <li><b>Grouped mix</b> — engine / road / impacts / wheels sub-mixes under one master.</li>
         </ul>
       </article>
@@ -199,7 +199,7 @@
         <h3>Pedal cues</h3>
         <div class="fx-chips">
           <span class="fx-chip" data-spec="gain · freq_hz · pulse_ms">ABS active</span><span class="fx-chip" data-spec="gain · freq_hz · brake_min">Wheels lock</span>
-          <span class="fx-chip" data-spec="brake_min trigger">Brake threshold</span><span class="fx-chip" data-spec="ShakeIt expression syntax">Custom formula</span>
+          <span class="fx-chip" data-spec="brake_min trigger">Brake threshold</span><span class="fx-chip" data-spec="custom expression syntax">Custom formula</span>
         </div>
       </div>
     </div>
@@ -247,6 +247,7 @@ $ haptics360 monitor --watch</code></pre>
           <li><b>Atomic applies</b> — every change lands whole, in ~0.25 s, mid-session.</li>
           <li><b>Relative or absolute</b> — <span class="mono">+25</span> nudges, <span class="mono">=80</span> sets.</li>
           <li><b>Filterable inventory</b> — <span class="mono">tune list --filter pedal.</span> shows one branch.</li>
+          <li><b>Solo audition</b> — isolate any single effect to hear it alone before blending it back in.</li>
           <li><b>Agent-friendly</b> — the same CLI answers in JSON for automation and AI tooling.</li>
         </ul>
       </div>
