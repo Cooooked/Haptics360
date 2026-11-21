@@ -31,6 +31,7 @@
       <a href="#outputs">Outputs</a>
       <a href="#effects">Effects</a>
       <a href="#tuning">Live tuning</a>
+      <a href="#faq">FAQ</a>
       <a href="#status">Status</a>
     </nav>
     <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
@@ -340,6 +341,20 @@ $ haptics360 monitor --watch</code></pre>
   </section>
 
   <!-- ============ 07 · STATUS ============ -->
+  <section class="section" id="faq">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">06</span> Questions</p>
+      <h2>The honest answers</h2>
+    </header>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Which devices does it drive?</summary><p>Direct-output haptic hardware — the shaker channel suits transducer-style motors like the ButtKicker, and the pedal channel is built for force-feedback brake pedals such as the P-HPR. More device profiles are added as the hardware earns them.</p></details>
+      <details class="faq-item"><summary>Where does the telemetry come from?</summary><p>Live telemetry shared into Haptics360's own memory interface, plus offline replay of recorded sessions — the same engine drives both, so you can tune against a lap you already drove.</p></details>
+      <details class="faq-item"><summary>Does it work with my sim?</summary><p>If your sim publishes telemetry, Haptics360 can feel it. The effect catalog covers road, powertrain, contact and aero cues across racing, flight and motion platforms.</p></details>
+      <details class="faq-item"><summary>Can I script it?</summary><p>Yes — the live-tuning CLI takes plain commands and returns JSON, so scripts, dashboards and AI tooling can read and write the same knobs you do.</p></details>
+      <details class="faq-item"><summary>Is it free?</summary><p>Pricing isn't decided yet — this page tracks the product as it develops. The coffee link keeps the project alive meanwhile.</p></details>
+    </div>
+  </section>
+
   <section class="section soon" id="status">
     <div class="soon-card">
       <p class="kicker"><span class="kicker-num">07</span> Status</p>

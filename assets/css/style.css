@@ -336,7 +336,7 @@ img { display: block; max-width: 100%; }
   .pm-sidebar { flex-direction: row; flex-wrap: wrap; border-right: 0; border-bottom: 1px solid var(--border); }
   .pm-main { grid-template-columns: 1fr; }
   .nav-links {
-    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; align-items: stretch; gap: 0;
     background: var(--bg); border-bottom: 1px solid var(--border);
     padding: 8px 20px 16px;
@@ -446,3 +446,12 @@ img { display: block; max-width: 100%; }
 .bp-chip{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:4px;padding:7px 14px;cursor:pointer;transition:all .18s}
 .bp-chip:hover{color:var(--text);border-color:var(--accent)}
 .bp-chip.is-active{color:#0C0D0F;background:var(--accent);border-color:var(--accent)}
+
+/* ---------- faq ---------- */
+.faq-list{max-width:760px}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;background:var(--panel);overflow:hidden}
+.faq-item summary{cursor:pointer;padding:16px 20px;font-weight:600;font-size:15px;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-item summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-size:18px;transition:transform .2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item p{margin:0;padding:0 20px 18px;color:var(--muted);font-size:14.5px;line-height:1.6}
