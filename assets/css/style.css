@@ -118,7 +118,7 @@ img { display: block; max-width: 100%; }
 @keyframes tick { to { transform: translateX(-50%); } }
 
 /* ---------- sections ---------- */
-.section { padding: 120px 28px; }
+.section { scroll-margin-top: 72px;padding: 120px 28px; }
 .section-head { max-width: 1180px; margin: 0 auto 56px; }
 .kicker {
   font-family: var(--mono); font-size: 12px; letter-spacing: .22em;
