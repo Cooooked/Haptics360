@@ -93,23 +93,24 @@
       <aside class="bench-panel" aria-label="Simulated rig controls">
         <div class="bench-device">
           <h3>ButtKicker <span class="dev-tag">SHAKER</span></h3>
-          <label class="ctl"><span class="ctl-label">Engine</span>
-            <input type="range" class="fx" data-dev="bk" data-fx="engine" min="0" max="100" value="55"></label>
-          <label class="ctl"><span class="ctl-label">Road</span>
-            <input type="range" class="fx" data-dev="bk" data-fx="road" min="0" max="100" value="40"></label>
-          <label class="ctl"><span class="ctl-label">Impacts</span>
-            <input type="range" class="fx" data-dev="bk" data-fx="impacts" min="0" max="100" value="35"></label>
+          <label class="ctl"><span class="ctl-label">Engine <output class="fx-val">55</output></span>
+            <input type="range" class="fx" data-dev="bk" data-fx="engine" data-knob="bk.engine_sound.gain" min="0" max="200" value="110"></label>
+          <label class="ctl"><span class="ctl-label">Road <output class="fx-val">40</output></span>
+            <input type="range" class="fx" data-dev="bk" data-fx="road" data-knob="bk.road_vibration.gain" min="0" max="200" value="80"></label>
+          <label class="ctl"><span class="ctl-label">Impacts <output class="fx-val">35</output></span>
+            <input type="range" class="fx" data-dev="bk" data-fx="impacts" data-knob="bk.impacts.gain" min="0" max="200" value="70"></label>
         </div>
         <div class="bench-device">
           <h3>P-HPR Pedal <span class="dev-tag">BRAKE</span></h3>
-          <label class="ctl"><span class="ctl-label">ABS pulse</span>
-            <input type="range" class="fx" data-dev="pd" data-fx="abs" min="0" max="100" value="45"></label>
-          <label class="ctl"><span class="ctl-label">Wheel lock</span>
-            <input type="range" class="fx" data-dev="pd" data-fx="lock" min="0" max="100" value="30"></label>
-          <label class="ctl"><span class="ctl-label">Road impacts</span>
-            <input type="range" class="fx" data-dev="pd" data-fx="roadfx" min="0" max="100" value="50"></label>
+          <label class="ctl"><span class="ctl-label">ABS pulse <output class="fx-val">90</output></span>
+            <input type="range" class="fx" data-dev="pd" data-fx="abs" data-knob="pedal.abs.gain" min="0" max="200" value="90"></label>
+          <label class="ctl"><span class="ctl-label">Wheel lock <output class="fx-val">60</output></span>
+            <input type="range" class="fx" data-dev="pd" data-fx="lock" data-knob="pedal.lock.gain" min="0" max="200" value="60"></label>
+          <label class="ctl"><span class="ctl-label">Road impacts <output class="fx-val">100</output></span>
+            <input type="range" class="fx" data-dev="pd" data-fx="roadfx" data-knob="pedal.road_impacts.gain" min="0" max="200" value="100"></label>
+          <p class="fx-knob mono-dim">abs 30 Hz · 60 ms &nbsp;·&nbsp; lock 32 Hz &nbsp;·&nbsp; road 20 Hz</p>
         </div>
-        <p class="ctl-note">Simulation — sliders stand in for the live knobs.</p>
+        <p class="ctl-note">Simulation — sliders stand in for the live knobs shown.</p>
       </aside>
     </div>
   </section>

@@ -63,12 +63,23 @@
     function gains() {
       var bk = 0, pd = 0;
       fx.forEach(function (el) {
-        var v = +el.value / 100;
+        var v = +el.value / 200;
         if (el.dataset.dev === "bk") bk += v * (el.dataset.fx === "impacts" ? 1.2 : 0.8);
         else pd += v * (el.dataset.fx === "abs" ? 1.1 : 0.9);
       });
       return { bk: bk / 3, pd: pd / 3 };
     }
+
+    // live knob readouts + tooltip names
+    fx.forEach(function (el) {
+      var lab = el.closest(".ctl").querySelector(".fx-val");
+      var sync = function () {
+        if (lab) lab.textContent = el.value + "%";
+      };
+      el.addEventListener("input", sync);
+      sync();
+      if (el.dataset.knob) el.title = el.dataset.knob;
+    });
 
     function trace(g, color, lw, phaseOff, freqMul) {
       sx.beginPath();

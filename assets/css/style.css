@@ -344,3 +344,7 @@ img { display: block; max-width: 100%; }
   .ticker-track { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* bench knob readout */
+.fx-val { color: var(--accent); font-family: var(--mono); font-size: 11px; }
+.fx-knob { font-size: 10px; letter-spacing: .06em; margin-top: 12px; }
