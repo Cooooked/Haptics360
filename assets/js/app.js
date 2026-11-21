@@ -220,3 +220,22 @@
     rev.forEach(function (el) { el.classList.add("is-in"); });
   }
 })();
+
+/* Mobile nav toggle */
+(function () {
+  var burger = document.getElementById("navBurger");
+  var navLinks = document.getElementById("navLinks");
+  if (!burger || !navLinks) return;
+  burger.addEventListener("click", function () {
+    var open = navLinks.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  navLinks.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+      navLinks.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
