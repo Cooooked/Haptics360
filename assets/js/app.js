@@ -360,6 +360,14 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   });
 })();
 
+/* FAQ expand/collapse all */
+(function () {
+  var items = document.querySelectorAll(".faq-item");
+  var all = document.getElementById("faqAll"), none = document.getElementById("faqNone");
+  if (all) all.addEventListener("click", function () { items.forEach(function (d) { d.open = true; }); });
+  if (none) none.addEventListener("click", function () { items.forEach(function (d) { d.open = false; }); });
+})();
+
 /* Scroll-spy: highlight the nav link for the section in view. */
 (function () {
   var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));

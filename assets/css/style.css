@@ -536,3 +536,6 @@ input[type="range"]:focus-visible{outline-offset:4px}
 button.pm-prof{width:100%;text-align:left;background:var(--panel-2);color:inherit;font-family:inherit;cursor:pointer;appearance:none}
 button.pm-prof .pm-card-head,button.pm-prof .pm-meta{pointer-events:none}
 button.pm-prof:hover{border-color:var(--accent)}
+.guide-tools{display:flex;gap:8px;margin-top:14px}
+.guide-tool{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);background:none;border:1px solid var(--line);border-radius:5px;padding:6px 12px;cursor:pointer}
+.guide-tool:hover{color:var(--ink);border-color:#4a4a52}
