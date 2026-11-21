@@ -316,6 +316,23 @@ $ haptics360 monitor --watch</code></pre>
       <div class="chain-link" aria-hidden="true"></div>
       <div class="chain-node accent-node"><span class="chain-num mono">out</span><b>Two devices</b><span class="mono-dim">shaker + pedal</span></div>
     </div>
+
+    <div class="xover reveal">
+      <div class="xover__head">
+        <h3>Feel the crossover</h3>
+        <p>Drag the crossover — the low band stays with the shaker, everything above goes to the pedal.</p>
+      </div>
+      <div class="xover__body">
+        <label class="ctl"><span class="ctl-label">Crossover <output id="xoOut">25 Hz</output></span>
+          <input type="range" id="xoDial" min="10" max="100" value="25" step="1"></label>
+        <div class="xover__bands" aria-hidden="true">
+          <div class="xo-lane"><span class="xo-tag">SHAKER · LOW</span><div class="xo-band" id="xoLow"></div></div>
+          <div class="xo-lane"><span class="xo-tag">PEDAL · HIGH</span><div class="xo-band" id="xoHigh"></div></div>
+        </div>
+        <p class="xover__read mono" id="xoRead" aria-live="polite">below 25 Hz → shaker &nbsp;·&nbsp; above → pedal</p>
+      </div>
+      <p class="xover__note">Illustrative routing diagram — the real crossover is one of the live-tunable knobs.</p>
+    </div>
   </section>
 
   <!-- ============ 06 · CONTROL PANEL ============ -->

@@ -490,3 +490,24 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     }
   });
 })();
+
+/* Crossover explorer — illustrates the split-band routing. */
+(function () {
+  var dial = document.getElementById("xoDial");
+  var out = document.getElementById("xoOut");
+  var read = document.getElementById("xoRead");
+  var low = document.getElementById("xoLow");
+  var high = document.getElementById("xoHigh");
+  if (!dial || !low || !high) return;
+  // log-ish mapping: 10Hz→15%, 100Hz→85% of the band width
+  function cut() {
+    var hz = +dial.value;
+    var pct = Math.round(15 + (hz - 10) / 90 * 70);
+    low.style.setProperty("--cut", pct + "%");
+    high.style.setProperty("--cut", pct + "%");
+    out.textContent = hz + " Hz";
+    read.innerHTML = "below " + hz + " Hz → shaker &nbsp;·&nbsp; above → pedal";
+  }
+  dial.addEventListener("input", cut);
+  cut();
+})();
