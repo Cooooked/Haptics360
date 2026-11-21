@@ -75,7 +75,7 @@
     fx.forEach(function (el) {
       var lab = el.closest(".ctl").querySelector(".fx-val");
       var sync = function () {
-        if (lab) lab.textContent = el.value + "%";
+        if (lab) lab.textContent = (+el.value / 2) + "%";
       };
       el.addEventListener("input", sync);
       sync();
@@ -191,7 +191,7 @@
         if (el) {
           el.value = p[k];
           var lab = el.closest(".ctl").querySelector(".fx-val");
-          if (lab) lab.textContent = p[k] + "%";
+          if (lab) lab.textContent = (+p[k] / 2) + "%";
           el.dispatchEvent(new Event("input"));
         }
       });
@@ -346,7 +346,7 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
       if (!el || isNaN(delta)) return;
       el.value = Math.max(0, Math.min(200, (+el.value) + delta));
       var lab = el.closest(".ctl").querySelector(".fx-val");
-      if (lab) lab.textContent = el.value + "%";
+      if (lab) lab.textContent = (+el.value / 2) + "%";
       el.dispatchEvent(new Event("input"));
       var ctl = el.closest(".ctl");
       ctl.classList.remove("fx-flash");
@@ -492,7 +492,7 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
       if (snap[key] != null) {
         el.value = snap[key];
         var lab = el.closest(".ctl").querySelector(".fx-val");
-        if (lab) lab.textContent = snap[key] + "%";
+        if (lab) lab.textContent = (+snap[key] / 2) + "%";
         el.dispatchEvent(new Event("input"));
       }
     });
