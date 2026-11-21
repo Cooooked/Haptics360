@@ -373,3 +373,63 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     } else fallback();
   });
 })();
+
+/* Bench — save/recall custom profiles (session + localStorage). */
+(function () {
+  var group = document.querySelector(".bench-profiles");
+  var saveBtn = document.getElementById("bpSave");
+  var fx = Array.prototype.slice.call(document.querySelectorAll("input.fx[data-knob]"));
+  if (!group || !saveBtn || !fx.length) return;
+  var KEY = "h360-bench-profiles";
+  var custom = [];
+  try { custom = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { custom = []; }
+
+  function snapshot() {
+    var o = {};
+    fx.forEach(function (el) {
+      var key = el.dataset.dev + "|" + el.dataset.fx;
+      o[key] = +el.value;
+    });
+    return o;
+  }
+  function applySnap(snap) {
+    fx.forEach(function (el) {
+      var key = el.dataset.dev + "|" + el.dataset.fx;
+      if (snap[key] != null) {
+        el.value = snap[key];
+        var lab = el.closest(".ctl").querySelector(".fx-val");
+        if (lab) lab.textContent = snap[key] + "%";
+        el.dispatchEvent(new Event("input"));
+      }
+    });
+    document.querySelectorAll(".bp-chip").forEach(function (c) { c.classList.remove("is-active"); });
+    group.querySelector('[data-prof="__custom_' + currentId + '"]') &&
+      group.querySelector('[data-prof="__custom_' + currentId + '"]').classList.add("is-active");
+  }
+  var currentId = null;
+  function renderCustom() {
+    group.querySelectorAll(".bp-custom").forEach(function (c) { c.remove(); });
+    custom.forEach(function (p, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "bp-chip bp-custom";
+      b.dataset.prof = "__custom_" + i;
+      b.textContent = p.name;
+      b.title = "Saved mix — click to recall";
+      b.addEventListener("click", function () {
+        currentId = i; applySnap(p.values);
+      });
+      saveBtn.parentNode.insertBefore(b, saveBtn);
+    });
+  }
+  saveBtn.addEventListener("click", function () {
+    var n = custom.length + 1;
+    custom.push({ name: "Mix " + n, values: snapshot() });
+    try { localStorage.setItem(KEY, JSON.stringify(custom.slice(-6))); } catch (e) {}
+    custom = custom.slice(-6);
+    currentId = custom.length - 1;
+    renderCustom();
+    if (custom[currentId]) applySnap(custom[currentId].values);
+  });
+  renderCustom();
+})();
