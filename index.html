@@ -334,6 +334,7 @@ $ haptics360 monitor --watch</code></pre>
         <button class="pm-item" data-view="pedal" type="button">Pedal</button>
         <button class="pm-item" data-view="devices" type="button">Devices</button>
         <button class="pm-item" data-view="monitor" type="button">Monitor</button>
+        <button class="pm-item" data-view="profiles" type="button">Profiles</button>
       </div>
       <div class="pm-main">
         <div class="pm-view is-active" data-view="mixer">
@@ -371,6 +372,12 @@ $ haptics360 monitor --watch</code></pre>
           <div class="pm-card"><div class="pm-card-head"><span>ButtKicker</span><span class="pm-badge ok">connected</span></div><div class="pm-meta mono-dim">WASAPI output · shaker band · master gain 100%</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>P-HPR pedal</span><span class="pm-badge ok">connected</span></div><div class="pm-meta mono-dim">direct drive · pedal band · force limited</div></div>
           <div class="pm-card"><div class="pm-card-head"><span>Telemetry source</span><span class="pm-badge ok">live</span></div><div class="pm-meta mono-dim">360 Hz shared stream · 4 Hz monitor</div></div>
+        </div>
+        <div class="pm-view" data-view="profiles">
+          <div class="pm-card"><div class="pm-card-head"><span>Reference</span><span class="mono-dim">active</span></div><div class="pm-meta mono-dim">all channels · default rig</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Brake focus</span><span class="mono-dim">pedal-heavy</span></div><div class="pm-meta mono-dim">ABS + lock emphasis · shaker eased</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Road focus</span><span class="mono-dim">shaker-heavy</span></div><div class="pm-meta mono-dim">surface + impacts · pedal light</div></div>
+          <div class="pm-test mono-dim">save current mix as a profile — recall per rig or per sim</div>
         </div>
         <div class="pm-view" data-view="monitor">
           <div class="pm-card"><div class="pm-card-head"><span>Shaker out</span><span class="pm-badge ok">-12 dB</span></div><div class="pm-meta mono-dim">rms -18.4 · peak -6.1 · clipping 0%</div></div>
