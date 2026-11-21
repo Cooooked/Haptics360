@@ -59,6 +59,7 @@
     var roPd = document.getElementById("roPd");
     var W = scope.width, H = scope.height;
     var t = 0, sraf = null;
+    var burst = { bk: 0, pd: 0 };
 
     function gains() {
       var bk = 0, pd = 0;
@@ -115,14 +116,16 @@
       sx.beginPath(); sx.moveTo(0, H / 2); sx.lineTo(W, H / 2); sx.stroke();
       sx.setLineDash([]);
       // pedal band (top), composite (mid), shaker (bottom glow)
-      trace(g.pd * 0.55, "rgba(224,176,60,0.85)", 1.4, 1.7, 1.4);
-      trace((g.bk + g.pd) / 2, "rgba(232,132,60,0.95)", 1.8, 0, 1);
-      trace(g.bk * 0.6, "rgba(120,170,255,0.55)", 1.4, 3.1, 0.7);
+      var bkG = g.bk + burst.bk, pdG = g.pd + burst.pd;
+      trace(pdG * 0.55, "rgba(224,176,60,0.85)", 1.4, 1.7, 1.4);
+      trace((bkG + pdG) / 2, "rgba(232,132,60,0.95)", 1.8, 0, 1);
+      trace(bkG * 0.6, "rgba(120,170,255,0.55)", 1.4, 3.1, 0.7);
+      burst.bk *= 0.90; burst.pd *= 0.90;
       // readouts
       var pct = function (v) { return Math.round(Math.min(100, v * 60)) + "%"; };
-      if (roMix) roMix.textContent = pct((g.bk + g.pd) / 2);
-      if (roBk) roBk.textContent = pct(g.bk);
-      if (roPd) roPd.textContent = pct(g.pd);
+      if (roMix) roMix.textContent = pct((bkG + pdG) / 2);
+      if (roBk) roBk.textContent = pct(bkG);
+      if (roPd) roPd.textContent = pct(pdG);
       t += 0.016;
       if (!reduceMotion) sraf = requestAnimationFrame(sdraw);
       else sdraw._done = true;
@@ -133,6 +136,13 @@
     }
     fx.forEach(function (el) {
       el.addEventListener("input", sstart);
+    });
+    // test-fire: decaying burst on that device's channel
+    document.querySelectorAll(".test-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        burst[b.dataset.fire] = muted ? 0 : 1.4;
+        sstart();
+      });
     });
     sstart();
     // pause when offscreen
