@@ -212,7 +212,17 @@
     var show = function () {
       if (inspectBody) {
         var mutedTag = chip.getAttribute("aria-pressed") === "false" ? " · muted" : "";
-        inspectBody.innerHTML = "<b>" + chip.textContent.replace(" · muted", "") + "</b>" + mutedTag + " — " + chip.dataset.spec;
+        var grp = chip.closest(".fx-group");
+        var grpName = grp ? grp.querySelector("h3").textContent.trim() : "";
+        var dev = grpName === "Pedal cues" ? "pd" : "bk";
+        inspectBody.innerHTML = "<b>" + chip.textContent.replace(" · muted", "") + "</b>" + mutedTag +
+          " — " + chip.dataset.spec +
+          ' <button type="button" class="fx-audition" data-dev="' + dev + '">audition → ' + (dev === "pd" ? "pedal" : "shaker") + "</button>";
+        var aud = inspectBody.querySelector(".fx-audition");
+        if (aud) aud.addEventListener("click", function () {
+          var tb = document.querySelector('.test-btn[data-fire="' + dev + '"]');
+          if (tb) tb.click();
+        });
       }
     };
     chip.addEventListener("mouseenter", show);

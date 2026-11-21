@@ -478,3 +478,7 @@ img { display: block; max-width: 100%; }
 
 /* scroll spy */
 .nav-links a.is-active{color:var(--text);background:var(--accent-dim)}
+
+/* effect inspector audition */
+.fx-audition{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--accent);background:transparent;border:1px solid var(--accent);border-radius:4px;padding:3px 8px;margin-left:8px;cursor:pointer;vertical-align:baseline;transition:background .15s,color .15s}
+.fx-audition:hover{background:var(--accent);color:#0a0a0c}
