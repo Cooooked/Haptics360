@@ -98,8 +98,21 @@
       sx.stroke();
     }
 
+    var chMute = { bk: false, pd: false };
+    document.querySelectorAll(".mute-btn.ch").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var ch = b.dataset.ch;
+        chMute[ch] = !chMute[ch];
+        b.setAttribute("aria-pressed", chMute[ch] ? "true" : "false");
+        b.classList.toggle("is-muted", chMute[ch]);
+        sstart();
+      });
+    });
+
     function sdraw() {
       var g = muted ? { bk: 0, pd: 0 } : gains();
+      if (chMute.bk) g.bk = 0;
+      if (chMute.pd) g.pd = 0;
       sx.clearRect(0, 0, W, H);
       // grid
       sx.strokeStyle = "rgba(255,255,255,0.045)";
