@@ -110,6 +110,9 @@
             <input type="range" class="fx" data-dev="pd" data-fx="roadfx" data-knob="pedal.road_impacts.gain" min="0" max="200" value="100"></label>
           <p class="fx-knob mono-dim">abs 30 Hz · 60 ms &nbsp;·&nbsp; lock 32 Hz &nbsp;·&nbsp; road 20 Hz</p>
         </div>
+        <button class="mute-btn" id="muteBtn" aria-pressed="false">
+          <span class="mute-dot"></span> MASTER MUTE
+        </button>
         <p class="ctl-note">Simulation — sliders stand in for the live knobs shown.</p>
       </aside>
     </div>
@@ -164,32 +167,36 @@
       <div class="fx-group">
         <h3>Powertrain</h3>
         <div class="fx-chips">
-          <span class="fx-chip">Engine sound</span><span class="fx-chip">RPM vibration</span>
-          <span class="fx-chip">Gear shift</span><span class="fx-chip">Missed gear</span>
-          <span class="fx-chip">Gear grinding</span>
+          <span class="fx-chip" data-spec="gain · freq band · load sensitivity">Engine sound</span><span class="fx-chip" data-spec="gain · freq_hz">RPM vibration</span>
+          <span class="fx-chip" data-spec="gain · freq_hz · duration_ms">Gear shift</span><span class="fx-chip" data-spec="gain · freq_hz">Missed gear</span>
+          <span class="fx-chip" data-spec="gain · freq_hz">Gear grinding</span>
         </div>
       </div>
       <div class="fx-group">
         <h3>Road</h3>
         <div class="fx-chips">
-          <span class="fx-chip">Road vibration</span><span class="fx-chip">Road texture</span>
-          <span class="fx-chip">Road impacts</span><span class="fx-chip">Kerb rumble</span>
+          <span class="fx-chip" data-spec="gain · auto_threshold">Road vibration</span><span class="fx-chip" data-spec="gain · speed fade">Road texture</span>
+          <span class="fx-chip" data-spec="gain · sensitivity · autocal · input_gain">Road impacts</span><span class="fx-chip" data-spec="gain · freq_hz">Kerb rumble</span>
         </div>
       </div>
       <div class="fx-group">
         <h3>Contact</h3>
         <div class="fx-chips">
-          <span class="fx-chip">Body impacts</span><span class="fx-chip">Traction loss</span>
-          <span class="fx-chip">Wheel slip</span><span class="fx-chip">Wheel lock</span>
+          <span class="fx-chip" data-spec="gain · sensitivity">Body impacts</span><span class="fx-chip" data-spec="gain">Traction loss</span>
+          <span class="fx-chip" data-spec="gain">Wheel slip</span><span class="fx-chip" data-spec="gain · freq_hz">Wheel lock</span>
         </div>
       </div>
       <div class="fx-group">
         <h3>Pedal cues</h3>
         <div class="fx-chips">
-          <span class="fx-chip">ABS active</span><span class="fx-chip">Wheels lock</span>
-          <span class="fx-chip">Brake threshold</span><span class="fx-chip">Custom formula</span>
+          <span class="fx-chip" data-spec="gain · freq_hz · pulse_ms">ABS active</span><span class="fx-chip" data-spec="gain · freq_hz · brake_min">Wheels lock</span>
+          <span class="fx-chip" data-spec="brake_min trigger">Brake threshold</span><span class="fx-chip" data-spec="ShakeIt expression syntax">Custom formula</span>
         </div>
       </div>
+    </div>
+    <div class="fx-inspect mono" id="fxInspect" aria-live="polite">
+      <span class="mono-dim">inspect an effect —</span>
+      <span id="fxInspectBody">hover or tap any cue to see its knobs</span>
     </div>
     <div class="knob-strip" aria-label="Per-effect controls">
       <span class="knob"><b>Gain</b> 0–200%</span>

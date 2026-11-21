@@ -146,6 +146,37 @@
     }
   }
 
+  /* ---------- master mute ---------- */
+  var muteBtn = document.getElementById("muteBtn");
+  var muted = false;
+  if (muteBtn) {
+    muteBtn.addEventListener("click", function () {
+      muted = !muted;
+      muteBtn.setAttribute("aria-pressed", muted ? "true" : "false");
+      muteBtn.classList.toggle("is-muted", muted);
+      if (scope && scope.getContext) {
+        scope.style.opacity = muted ? "0.15" : "";
+      }
+      if (roMix) roMix.textContent = muted ? "MUTED" : roMix.textContent;
+      if (roBk) roBk.textContent = muted ? "0%" : roBk.textContent;
+      if (roPd) roPd.textContent = muted ? "0%" : roPd.textContent;
+      if (muted) { /* redraw resumes on next input */ }
+    });
+  }
+
+  /* ---------- effect inspector ---------- */
+  var inspectBody = document.getElementById("fxInspectBody");
+  document.querySelectorAll(".fx-chip").forEach(function (chip) {
+    var show = function () {
+      if (inspectBody) {
+        inspectBody.innerHTML = "<b>" + chip.textContent + "</b> — " + chip.dataset.spec;
+      }
+    };
+    chip.addEventListener("mouseenter", show);
+    chip.addEventListener("focus", show);
+    chip.addEventListener("click", show);
+  });
+
   /* ---------- scroll reveals ---------- */
   var rev = document.querySelectorAll(".section-head, .card, .fx-group, .bench-grid, .split, .panel-mock, .soon-card, .knob-strip");
   rev.forEach(function (el) { el.classList.add("reveal"); });
