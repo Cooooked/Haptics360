@@ -227,6 +227,7 @@
       var t = c.textContent.replace(" · muted", "");
       if (c.textContent !== t) c.textContent = t;
     });
+    document.querySelectorAll(".fx-gmute").forEach(function (g) { g.setAttribute("aria-pressed", "false"); });
     if (soloChip) { soloChip.classList.remove("is-solo"); soloChip = null; }
   });
   document.querySelector(".fx-groups").addEventListener("click", function (e) {
