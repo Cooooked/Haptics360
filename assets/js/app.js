@@ -312,3 +312,26 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   }, { rootMargin: "-30% 0px -60% 0px" });
   sections.forEach(function (s) { io.observe(s); });
 })();
+
+/* Monitor pane — values jitter at 4 Hz while the pane is visible (mirrors the real 4 Hz monitor). */
+(function () {
+  var pane = document.querySelector('.pm-view[data-view="monitor"]');
+  var vals = pane ? pane.querySelectorAll(".live-v") : [];
+  if (!pane || !vals.length) return;
+  var timer = null;
+  function tick() {
+    vals.forEach(function (el) {
+      var base = parseFloat(el.dataset.v), j = parseFloat(el.dataset.j || "1"), dec = +(el.dataset.d || "0");
+      var v = base + (Math.random() * 2 - 1) * j;
+      el.textContent = dec ? v.toFixed(dec) : String(Math.round(v));
+    });
+  }
+  function sync() {
+    var on = pane.classList.contains("is-active") && !document.hidden;
+    if (on && !timer) timer = setInterval(tick, 250);
+    if (!on && timer) { clearInterval(timer); timer = null; }
+  }
+  tick(); sync();
+  document.querySelectorAll(".pm-item").forEach(function (i) { i.addEventListener("click", sync); });
+  document.addEventListener("visibilitychange", sync);
+})();
