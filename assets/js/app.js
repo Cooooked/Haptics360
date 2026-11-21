@@ -208,6 +208,16 @@
 
   /* ---------- effect inspector ---------- */
   var inspectBody = document.getElementById("fxInspectBody");
+  var soloChip = null;
+  function clearSolo() {
+    if (!soloChip) return;
+    soloChip.classList.remove("is-solo");
+    soloChip = null;
+    document.querySelectorAll(".fx-chip").forEach(function (c) { c.classList.remove("is-dimmed"); });
+  }
+  document.querySelector(".fx-groups").addEventListener("click", function (e) {
+    if (e.target.classList && e.target.classList.contains("fx-chip") && soloChip && e.target !== soloChip) clearSolo();
+  });
   document.querySelectorAll(".fx-chip").forEach(function (chip) {
     var show = function () {
       if (inspectBody) {
@@ -217,11 +227,22 @@
         var dev = grpName === "Pedal cues" ? "pd" : "bk";
         inspectBody.innerHTML = "<b>" + chip.textContent.replace(" · muted", "") + "</b>" + mutedTag +
           " — " + chip.dataset.spec +
-          ' <button type="button" class="fx-audition" data-dev="' + dev + '">audition → ' + (dev === "pd" ? "pedal" : "shaker") + "</button>";
+          ' <button type="button" class="fx-audition" data-dev="' + dev + '">audition → ' + (dev === "pd" ? "pedal" : "shaker") + "</button>" +
+          ' <button type="button" class="fx-solo">solo</button>';
         var aud = inspectBody.querySelector(".fx-audition");
         if (aud) aud.addEventListener("click", function () {
           var tb = document.querySelector('.test-btn[data-fire="' + dev + '"]');
           if (tb) tb.click();
+        });
+        var sol = inspectBody.querySelector(".fx-solo");
+        if (sol) sol.addEventListener("click", function () {
+          if (soloChip === chip) { clearSolo(); return; }
+          clearSolo();
+          soloChip = chip;
+          chip.classList.add("is-solo");
+          document.querySelectorAll(".fx-chip").forEach(function (c) {
+            if (c !== chip) c.classList.add("is-dimmed");
+          });
         });
       }
     };
