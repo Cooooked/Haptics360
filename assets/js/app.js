@@ -326,10 +326,19 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
 (function () {
   var items = document.querySelectorAll(".pm-item");
   var views = document.querySelectorAll(".pm-view");
+  function show(view) {
+    items.forEach(function (i) { i.classList.toggle("is-active", i.dataset.view === view); });
+    views.forEach(function (v) { v.classList.toggle("is-active", v.dataset.view === view); });
+  }
   items.forEach(function (item) {
-    item.addEventListener("click", function () {
-      items.forEach(function (i) { i.classList.toggle("is-active", i === item); });
-      views.forEach(function (v) { v.classList.toggle("is-active", v.dataset.view === item.dataset.view); });
+    item.addEventListener("click", function () { show(item.dataset.view); });
+  });
+  // terminal commands can jump to a pane (e.g. monitor --watch)
+  document.querySelectorAll(".cmdline[data-goto]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      show(el.dataset.goto);
+      var mock = document.querySelector(".panel-mock");
+      if (mock) mock.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   });
 })();
