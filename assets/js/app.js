@@ -98,7 +98,7 @@
     }
 
     function sdraw() {
-      var g = gains();
+      var g = muted ? { bk: 0, pd: 0 } : gains();
       sx.clearRect(0, 0, W, H);
       // grid
       sx.strokeStyle = "rgba(255,255,255,0.045)";
@@ -154,13 +154,7 @@
       muted = !muted;
       muteBtn.setAttribute("aria-pressed", muted ? "true" : "false");
       muteBtn.classList.toggle("is-muted", muted);
-      if (scope && scope.getContext) {
-        scope.style.opacity = muted ? "0.15" : "";
-      }
-      if (roMix) roMix.textContent = muted ? "MUTED" : roMix.textContent;
-      if (roBk) roBk.textContent = muted ? "0%" : roBk.textContent;
-      if (roPd) roPd.textContent = muted ? "0%" : roPd.textContent;
-      if (muted) { /* redraw resumes on next input */ }
+      if (scope) scope.style.opacity = muted ? "0.25" : "";
     });
   }
 
