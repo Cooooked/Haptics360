@@ -497,6 +497,9 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     } else if (e.key === "2") {
       var b2 = document.querySelector('.test-btn[data-fire="pd"]');
       if (b2) { b2.click(); e.preventDefault(); }
+    } else if (e.key === "r" || e.key === "R") {
+      var rs = document.getElementById("benchReset");
+      if (rs) { rs.click(); e.preventDefault(); }
     }
   });
 })();
