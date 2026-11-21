@@ -415,6 +415,7 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   var pane = document.querySelector('.pm-view[data-view="monitor"]');
   var vals = pane ? pane.querySelectorAll(".live-v") : [];
   if (!pane || !vals.length) return;
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var timer = null;
   var mBk = document.getElementById("meterBk");
   var mPd = document.getElementById("meterPd");
@@ -428,7 +429,7 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     if (mPd) mPd.style.width = (35 + Math.random() * 50) + "%";
   }
   function sync() {
-    var on = pane.classList.contains("is-active") && !document.hidden;
+    var on = pane.classList.contains("is-active") && !document.hidden && !reducedMotion;
     if (on && !timer) timer = setInterval(tick, 250);
     if (!on && timer) { clearInterval(timer); timer = null; }
   }
