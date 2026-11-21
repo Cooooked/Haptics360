@@ -168,10 +168,6 @@
     chip.addEventListener("click", function () {
       document.querySelectorAll(".bp-chip").forEach(function (c) { c.classList.toggle("is-active", c === chip); });
       var p = PROFILES[chip.dataset.prof];
-      fx.forEach(function (el) {
-        var key = FX_MAP[el.dataset.dev + "_" + el.dataset.fx];
-        // map by dev+fx pair
-      });
       Object.keys(FX_MAP).forEach(function (k) {
         var pair = FX_MAP[k].split("|");
         var el = document.querySelector('.fx[data-dev="' + pair[0] + '"][data-fx="' + pair[1] + '"]');
