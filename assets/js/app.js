@@ -301,6 +301,15 @@
 
 /* Runnable tune commands — clicking applies the delta to matching bench sliders. */
 document.querySelectorAll(".cmdline").forEach(function (line) {
+  if (line.dataset.apply || line.dataset.goto) {
+    line.tabIndex = 0;
+    line.setAttribute("role", "button");
+  }
+  line.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === " ") && (line.dataset.apply || line.dataset.goto)) {
+      e.preventDefault(); line.click();
+    }
+  });
   line.addEventListener("click", function () {
     var apply = line.dataset.apply;
     if (!apply) return;
