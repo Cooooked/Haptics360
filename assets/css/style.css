@@ -533,3 +533,6 @@ img { display: block; max-width: 100%; }
 input[type="range"]:focus-visible{outline-offset:4px}
 .cmdline[data-apply],.cmdline[data-goto]{cursor:pointer}
 .cmdline[data-apply]:focus-visible,.cmdline[data-goto]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.pm-prof{width:100%;text-align:left;background:none;border:0;color:inherit;font-family:inherit;cursor:pointer;padding:0}
+button.pm-prof .pm-card-head,button.pm-prof .pm-meta{pointer-events:none}
+button.pm-prof:hover{border-color:var(--accent)}

@@ -517,6 +517,18 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   renderCustom();
 })();
 
+/* Profiles pane — clicking a rig profile loads it on the bench. */
+(function () {
+  document.querySelectorAll(".pm-prof").forEach(function (card) {
+    card.addEventListener("click", function () {
+      var chip = document.querySelector('.bp-chip[data-prof="' + card.dataset.prof + '"]');
+      if (chip) chip.click();
+      var bench = document.getElementById("bench") || document.querySelector(".bench");
+      if (bench) bench.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+})();
+
 /* Bench reset — restore Reference profile and clear channel mutes. */
 (function () {
   var btn = document.getElementById("benchReset");
