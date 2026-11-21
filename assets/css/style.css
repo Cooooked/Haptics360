@@ -422,6 +422,6 @@ img { display: block; max-width: 100%; }
 }
 
 /* test-fire button */
-.test-btn{margin-top:12px;width:100%;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--amber);background:transparent;border:1px solid rgba(232,132,60,.4);border-radius:4px;padding:9px 0;cursor:pointer;transition:all .18s}
-.test-btn:hover{background:rgba(232,132,60,.12);border-color:var(--amber)}
+.test-btn{margin-top:12px;width:100%;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.16em;color:var(--accent);background:transparent;border:1px solid rgba(232,132,60,.4);border-radius:4px;padding:9px 0;cursor:pointer;transition:all .18s}
+.test-btn:hover{background:rgba(232,132,60,.12);border-color:var(--accent)}
 .test-btn:active{transform:translateY(1px)}
