@@ -231,6 +231,20 @@
   });
   document.querySelector(".fx-groups").addEventListener("click", function (e) {
     if (e.target.classList && e.target.classList.contains("fx-chip") && soloChip && e.target !== soloChip) clearSolo();
+    // per-group mute toggle
+    if (e.target.classList && e.target.classList.contains("fx-gmute")) {
+      var grp = e.target.closest(".fx-group");
+      if (!grp) return;
+      var mute = e.target.getAttribute("aria-pressed") !== "true";
+      e.target.setAttribute("aria-pressed", mute ? "true" : "false");
+      grp.querySelectorAll(".fx-chip").forEach(function (c) {
+        c.setAttribute("aria-pressed", mute ? "false" : "true");
+        var t = c.textContent.replace(" · muted", "");
+        c.textContent = mute ? t + " · muted" : t;
+      });
+      if (mute && soloChip) clearSolo();
+      return;
+    }
   });
   document.querySelectorAll(".fx-chip").forEach(function (chip) {
     var show = function () {
