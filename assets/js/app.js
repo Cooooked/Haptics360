@@ -54,7 +54,6 @@
   if (scope && scope.getContext) {
     var sx = scope.getContext("2d");
     var fx = document.querySelectorAll(".fx");
-  fx.forEach(function (el) { if (el.dataset.knob) el.title = el.dataset.knob; });
     var roMix = document.getElementById("roMix");
     var roBk = document.getElementById("roBk");
     var roPd = document.getElementById("roPd");
