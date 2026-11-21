@@ -586,6 +586,9 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     } else if (e.key === "r" || e.key === "R") {
       var rs = document.getElementById("benchReset");
       if (rs) { rs.click(); e.preventDefault(); }
+    } else if (e.key === "u" || e.key === "U") {
+      var ur = document.getElementById("fxReset");
+      if (ur) { ur.click(); e.preventDefault(); }
     }
   });
 })();
