@@ -450,9 +450,11 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     });
     lines.push("monitor --watch");
     var text = lines.join("\n");
+    var msg = document.getElementById("copyMsg");
     function done() {
       btn.classList.add("is-done"); btn.textContent = "COPIED";
-      setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "COPY MIX AS TUNE SET"; }, 1600);
+      if (msg) msg.textContent = "Tune set copied to clipboard";
+      setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "COPY MIX AS TUNE SET"; if (msg) msg.textContent = ""; }, 1600);
     }
     function fallback() {
       var ta = document.createElement("textarea");

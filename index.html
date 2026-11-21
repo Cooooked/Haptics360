@@ -146,7 +146,8 @@
         <button class="mute-btn" id="muteBtn" aria-pressed="false">
           <span class="mute-dot"></span> MASTER MUTE
         </button>
-        <button class="copy-mix" id="copyMix" type="button">COPY MIX AS TUNE SET</button>
+        <button class="copy-mix" id="copyMix" type="button" aria-describedby="copyMsg">COPY MIX AS TUNE SET</button>
+        <span class="sr-only" id="copyMsg" role="status"></span>
         <button class="copy-mix" id="benchReset" type="button">RESET BENCH</button>
         <p class="ctl-note">Simulation — sliders stand in for the live knobs shown. Keys: M mute · 1/2 test-fire · R reset · U unmute fx.</p>
       </aside>
