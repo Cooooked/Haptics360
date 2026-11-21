@@ -156,6 +156,35 @@
     }
   }
 
+  /* ---------- rig profiles (bench presets) ---------- */
+  var PROFILES = {
+    reference: { bk_engine: 110, bk_road: 80, bk_impacts: 70, pd_abs: 90, pd_lock: 60, pd_roadfx: 100 },
+    brake:     { bk_engine: 70,  bk_road: 50, bk_impacts: 90, pd_abs: 160, pd_lock: 120, pd_roadfx: 60 },
+    road:      { bk_engine: 60,  bk_road: 160, bk_impacts: 110, pd_abs: 50, pd_lock: 40, pd_roadfx: 140 }
+  };
+  var FX_MAP = { bk_engine: "bk|engine", bk_road: "bk|road", bk_impacts: "bk|impacts",
+                 pd_abs: "pd|abs", pd_lock: "pd|lock", pd_roadfx: "pd|roadfx" };
+  document.querySelectorAll(".bp-chip").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      document.querySelectorAll(".bp-chip").forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+      var p = PROFILES[chip.dataset.prof];
+      fx.forEach(function (el) {
+        var key = FX_MAP[el.dataset.dev + "_" + el.dataset.fx];
+        // map by dev+fx pair
+      });
+      Object.keys(FX_MAP).forEach(function (k) {
+        var pair = FX_MAP[k].split("|");
+        var el = document.querySelector('.fx[data-dev="' + pair[0] + '"][data-fx="' + pair[1] + '"]');
+        if (el) {
+          el.value = p[k];
+          var lab = el.closest(".ctl").querySelector(".fx-val");
+          if (lab) lab.textContent = p[k] + "%";
+          el.dispatchEvent(new Event("input"));
+        }
+      });
+    });
+  });
+
   /* ---------- master mute ---------- */
   var muteBtn = document.getElementById("muteBtn");
   var muted = false;
