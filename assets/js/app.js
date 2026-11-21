@@ -470,3 +470,23 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "RESET BENCH"; }, 1400);
   });
 })();
+
+/* Bench keyboard shortcuts: M master mute, 1 shaker / 2 pedal test-fire. */
+(function () {
+  "use strict";
+  document.addEventListener("keydown", function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable)) return;
+    if (e.key === "m" || e.key === "M") {
+      var m = document.getElementById("muteBtn");
+      if (m) { m.click(); e.preventDefault(); }
+    } else if (e.key === "1") {
+      var b1 = document.querySelector('.test-btn[data-fire="bk"]');
+      if (b1) { b1.click(); e.preventDefault(); }
+    } else if (e.key === "2") {
+      var b2 = document.querySelector('.test-btn[data-fire="pd"]');
+      if (b2) { b2.click(); e.preventDefault(); }
+    }
+  });
+})();
