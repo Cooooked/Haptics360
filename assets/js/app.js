@@ -508,6 +508,10 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
       c.classList.remove("is-active");
       c.setAttribute("aria-pressed", "false");
     });
+    document.querySelectorAll(".pm-prof").forEach(function (c) {
+      c.classList.remove("is-active");
+      c.setAttribute("aria-pressed", "false");
+    });
     var cur = group.querySelector('[data-prof="__custom_' + currentId + '"]');
     if (cur) {
       cur.classList.add("is-active");
