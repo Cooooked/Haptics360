@@ -184,6 +184,11 @@
         c.classList.toggle("is-active", on);
         c.setAttribute("aria-pressed", on ? "true" : "false");
       });
+      document.querySelectorAll(".pm-prof").forEach(function (c) {
+        var on = c.dataset.prof === chip.dataset.prof;
+        c.classList.toggle("is-active", on);
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+      });
       var p = PROFILES[chip.dataset.prof];
       Object.keys(FX_MAP).forEach(function (k) {
         var pair = FX_MAP[k].split("|");
