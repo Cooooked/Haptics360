@@ -345,3 +345,31 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   document.querySelectorAll(".pm-item").forEach(function (i) { i.addEventListener("click", sync); });
   document.addEventListener("visibilitychange", sync);
 })();
+
+/* Bench — copy current mix as tune-set commands. */
+(function () {
+  var btn = document.getElementById("copyMix");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var lines = [];
+    document.querySelectorAll("input.fx[data-knob]").forEach(function (el) {
+      var pct = (+el.value / 2).toFixed(0); // 0-200 slider → 0-100%
+      lines.push("tune set " + el.dataset.knob + "=" + pct);
+    });
+    lines.push("monitor --watch");
+    var text = lines.join("\n");
+    function done() {
+      btn.classList.add("is-done"); btn.textContent = "COPIED";
+      setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "COPY MIX AS TUNE SET"; }, 1600);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else fallback();
+  });
+})();
