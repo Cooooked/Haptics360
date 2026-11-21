@@ -215,6 +215,16 @@
     soloChip = null;
     document.querySelectorAll(".fx-chip").forEach(function (c) { c.classList.remove("is-dimmed"); });
   }
+  var resetBtn = document.getElementById("fxReset");
+  if (resetBtn) resetBtn.addEventListener("click", function () {
+    document.querySelectorAll(".fx-chip").forEach(function (c) {
+      c.setAttribute("aria-pressed", "true");
+      c.classList.remove("is-dimmed");
+      var t = c.textContent.replace(" · muted", "");
+      if (c.textContent !== t) c.textContent = t;
+    });
+    if (soloChip) { soloChip.classList.remove("is-solo"); soloChip = null; }
+  });
   document.querySelector(".fx-groups").addEventListener("click", function (e) {
     if (e.target.classList && e.target.classList.contains("fx-chip") && soloChip && e.target !== soloChip) clearSolo();
   });

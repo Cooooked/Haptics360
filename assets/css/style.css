@@ -514,3 +514,5 @@ img { display: block; max-width: 100%; }
 .xover__read{grid-column:1/-1;margin:6px 0 0;font-size:11px;color:var(--muted);letter-spacing:.06em}
 .xover__note{margin:16px 0 0;font-family:var(--mono);font-size:10px;color:var(--faint);border-top:1px solid var(--border);padding-top:14px}
 @media(max-width:640px){.xover__body{grid-template-columns:1fr}.xo-lane{grid-template-columns:1fr;gap:6px}}
+.fx-reset{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:4px;padding:4px 10px;margin-left:10px;cursor:pointer;vertical-align:baseline}
+.fx-reset:hover{color:var(--accent);border-color:var(--accent)}
