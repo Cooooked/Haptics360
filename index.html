@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haptics360 — feel the track</title>
+<meta name="description" content="Haptics360 is a PC sim-racing haptics engine: ButtKicker shaker and Simagic P-HPR brake pedal driven from one live mix — engine, impacts, ABS, lockup — tuned in real time, no restart.">
+<meta property="og:title" content="Haptics360 — feel the track">
+<meta property="og:description" content="One mix. Two bodies of hardware. Every cue you can tune live.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cooooked.github.io/Haptics360/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav" id="top">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Haptics360 home">
+      <img src="assets/img/h360-logo.svg" alt="Haptics360" width="150" height="25">
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#bench">The bench</a>
+      <a href="#outputs">Outputs</a>
+      <a href="#effects">Effects</a>
+      <a href="#tuning">Live tuning</a>
+      <a href="#status">Status</a>
+    </nav>
+    <a class="nav-cta" href="https://buymeacoffee.com/xqbsit" rel="noopener">Buy me a coffee</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <canvas id="heroWave" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="hero-kicker">Sim racing haptics · Windows · in development</p>
+      <h1 class="hero-title">FEEL<br>THE <em>TRACK</em>.</h1>
+      <p class="hero-sub">
+        Haptics360 drives your ButtKicker shaker and Simagic P-HPR brake pedal
+        from a single live mix — engine, kerbs, impacts, ABS pulses and lockup,
+        every cue tunable while you drive.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#bench">Open the bench</a>
+        <a class="btn btn-ghost" href="#status">Status</a>
+      </div>
+      <ul class="hero-facts" aria-label="Key facts">
+        <li><b>Two outputs</b><span>shaker + brake pedal, mixed independently</span></li>
+        <li><b>Live tuning</b><span>changes apply in ~0.25 s — no restart</span></li>
+        <li><b>360 Hz telemetry</b><span>every cue scheduled against the sim</span></li>
+      </ul>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>ENGINE SOUND</span><i>·</i><span>ROAD VIBRATION</span><i>·</i><span>ABS PULSE</span><i>·</i><span>WHEEL LOCK</span><i>·</i><span>GEAR SHIFT</span><i>·</i><span>KERB BUZZ</span><i>·</i><span>TRACTION LOSS</span><i>·</i><span>BODY IMPACTS</span><i>·</i><span>ENGINE SOUND</span><i>·</i><span>ROAD VIBRATION</span><i>·</i><span>ABS PULSE</span><i>·</i><span>WHEEL LOCK</span><i>·</i><span>GEAR SHIFT</span><i>·</i><span>KERB BUZZ</span><i>·</i><span>TRACTION LOSS</span><i>·</i><span>BODY IMPACTS</span><i>·</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 · THE BENCH ============ -->
+  <section class="section bench" id="bench">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">01</span> The bench</p>
+      <h2>One mix. Two bodies of hardware.</h2>
+      <p class="lede">
+        Drag the sliders — this is a browser simulation of the live mix, not
+        the application. In the real rig both outputs react at once: the shaker
+        carries the low end, the pedal carries the high-frequency cues, and
+        every change lands while the sim keeps running.
+      </p>
+    </header>
+
+    <div class="bench-grid">
+      <div class="scope-wrap">
+        <canvas id="scope" width="960" height="360" aria-label="Simulated haptic output waveform"></canvas>
+        <div class="scope-readout mono">
+          <span>COMPOSITE <b id="roMix">—</b></span>
+          <span>SHAKER <b id="roBk">—</b></span>
+          <span>PEDAL <b id="roPd">—</b></span>
+        </div>
+      </div>
+
+      <aside class="bench-panel" aria-label="Simulated rig controls">
+        <div class="bench-device">
+          <h3>ButtKicker <span class="dev-tag">SHAKER</span></h3>
+          <label class="ctl"><span class="ctl-label">Engine</span>
+            <input type="range" class="fx" data-dev="bk" data-fx="engine" min="0" max="100" value="55"></label>
+          <label class="ctl"><span class="ctl-label">Road</span>
+            <input type="range" class="fx" data-dev="bk" data-fx="road" min="0" max="100" value="40"></label>
+          <label class="ctl"><span class="ctl-label">Impacts</span>
+            <input type="range" class="fx" data-dev="bk" data-fx="impacts" min="0" max="100" value="35"></label>
+        </div>
+        <div class="bench-device">
+          <h3>P-HPR Pedal <span class="dev-tag">BRAKE</span></h3>
+          <label class="ctl"><span class="ctl-label">ABS pulse</span>
+            <input type="range" class="fx" data-dev="pd" data-fx="abs" min="0" max="100" value="45"></label>
+          <label class="ctl"><span class="ctl-label">Wheel lock</span>
+            <input type="range" class="fx" data-dev="pd" data-fx="lock" min="0" max="100" value="30"></label>
+          <label class="ctl"><span class="ctl-label">Road impacts</span>
+            <input type="range" class="fx" data-dev="pd" data-fx="roadfx" min="0" max="100" value="50"></label>
+        </div>
+        <p class="ctl-note">Simulation — sliders stand in for the live knobs.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 02 · OUTPUTS ============ -->
+  <section class="section" id="outputs">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">02</span> Outputs</p>
+      <h2>Built for the rig, not the spec sheet</h2>
+      <p class="lede">
+        Most haptics tools push everything through one channel. Haptics360
+        treats your shaker and your brake pedal as separate instruments in the
+        same mix — each with its own gain, its own frequency band, its own
+        mute — then sums them against the same telemetry.
+      </p>
+    </header>
+    <div class="card-grid cols-2">
+      <article class="card card-feature">
+        <h3>ButtKicker channel</h3>
+        <p class="card-sub">The body channel — low frequencies, sustained cues.</p>
+        <ul class="check-list">
+          <li><b>Native LFE passthrough</b> — the game's own low-frequency effects, levelled and limited.</li>
+          <li><b>Synthesised ShakeIt effects</b> — engine, gears, kerbs and impacts rendered as motor drive.</li>
+          <li><b>Grouped mix</b> — engine / road / impacts / wheels sub-mixes under one master.</li>
+        </ul>
+      </article>
+      <article class="card card-feature">
+        <h3>P-HPR pedal channel</h3>
+        <p class="card-sub">The precision channel — high-frequency cues at the foot.</p>
+        <ul class="check-list">
+          <li><b>Direct motor control</b> — brake-pedal actuator driven cue by cue, 10–100 Hz.</li>
+          <li><b>Pedal-specific effects</b> — ABS pulses, lockup buzz, kerb rumble, road impacts.</li>
+          <li><b>Per-cue envelopes</b> — pulse width, duration and trigger thresholds per effect.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 03 · EFFECTS ============ -->
+  <section class="section" id="effects">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">03</span> Effects library</p>
+      <h2>Every cue is a knob, not a preset</h2>
+      <p class="lede">
+        Effects aren't on/off switches. Each one carries its own gain, frequency,
+        sensitivity, envelope and trigger threshold — and custom formulas for the
+        drivers who want to write their own response curve.
+      </p>
+    </header>
+    <div class="fx-groups">
+      <div class="fx-group">
+        <h3>Powertrain</h3>
+        <div class="fx-chips">
+          <span class="fx-chip">Engine sound</span><span class="fx-chip">RPM vibration</span>
+          <span class="fx-chip">Gear shift</span><span class="fx-chip">Missed gear</span>
+          <span class="fx-chip">Gear grinding</span>
+        </div>
+      </div>
+      <div class="fx-group">
+        <h3>Road</h3>
+        <div class="fx-chips">
+          <span class="fx-chip">Road vibration</span><span class="fx-chip">Road texture</span>
+          <span class="fx-chip">Road impacts</span><span class="fx-chip">Kerb rumble</span>
+        </div>
+      </div>
+      <div class="fx-group">
+        <h3>Contact</h3>
+        <div class="fx-chips">
+          <span class="fx-chip">Body impacts</span><span class="fx-chip">Traction loss</span>
+          <span class="fx-chip">Wheel slip</span><span class="fx-chip">Wheel lock</span>
+        </div>
+      </div>
+      <div class="fx-group">
+        <h3>Pedal cues</h3>
+        <div class="fx-chips">
+          <span class="fx-chip">ABS active</span><span class="fx-chip">Wheels lock</span>
+          <span class="fx-chip">Brake threshold</span><span class="fx-chip">Custom formula</span>
+        </div>
+      </div>
+    </div>
+    <div class="knob-strip" aria-label="Per-effect controls">
+      <span class="knob"><b>Gain</b> 0–200%</span>
+      <span class="knob"><b>Frequency</b> 10–100 Hz</span>
+      <span class="knob"><b>Sensitivity</b> trigger threshold</span>
+      <span class="knob"><b>Envelope</b> pulse &amp; duration</span>
+      <span class="knob"><b>Enable / mute</b> per effect</span>
+    </div>
+  </section>
+
+  <!-- ============ 04 · LIVE TUNING ============ -->
+  <section class="section" id="tuning">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">04</span> Live tuning</p>
+      <h2>Change it mid-corner. It just works.</h2>
+      <p class="lede">
+        Settings are applied atomically — a change is live in about a quarter
+        of a second, with no restart, no audio glitch, no lost telemetry.
+        The same knobs are exposed to scripts and AI agents over a plain
+        command line, and a 4 Hz monitor streams the live state of both
+        outputs while you drive.
+      </p>
+    </header>
+
+    <div class="split">
+      <div class="term" aria-label="Example tuning commands">
+        <div class="term-bar"><i></i><i></i><i></i><span>haptics360 — live</span></div>
+<pre class="term-body"><code><span class="t-dim"># soften the shaker's impact channel</span>
+$ haptics360 tune set <span class="t-key">bk.impacts.gain</span>=<span class="t-val">-25</span>
+
+<span class="t-dim"># wake up the pedal's kerb cue, split the frequencies</span>
+$ haptics360 tune set <span class="t-key">pedal.road_impacts.gain</span>=<span class="t-val">+25</span> <span class="t-key">pedal.road_impacts.freq_hz</span>=<span class="t-val">20</span>
+
+<span class="t-dim"># watch both outputs live, 4 Hz</span>
+$ haptics360 monitor --watch</code></pre>
+      </div>
+      <div class="split-copy">
+        <ul class="check-list">
+          <li><b>Atomic applies</b> — every change lands whole, in ~0.25 s, mid-session.</li>
+          <li><b>Relative or absolute</b> — <span class="mono">+25</span> nudges, <span class="mono">=80</span> sets.</li>
+          <li><b>Filterable inventory</b> — <span class="mono">tune list --filter pedal.</span> shows one branch.</li>
+          <li><b>Agent-friendly</b> — the same CLI answers in JSON for automation and AI tooling.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · ENGINE ============ -->
+  <section class="section" id="engine">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">05</span> Under the hood</p>
+      <h2>Built like a instrument, not a wrapper</h2>
+      <p class="lede">
+        Telemetry is sampled at 360 Hz and played out against the wall clock,
+        so every cue lands where the sim actually is — not where it was a
+        frame ago. A fitted predictor covers the last few milliseconds, and
+        the mix splits into bands so the shaker and the pedal never fight
+        over the same frequencies.
+      </p>
+    </header>
+    <div class="card-grid cols-3">
+      <article class="card"><h3>360 Hz telemetry</h3><p>A dedicated high-rate stream buffers every sample and synchronises playout to the wall clock — sub-frame cue timing, not frame-slaved triggers.</p></article>
+      <article class="card"><h3>Predictive playout</h3><p>A fitted predictor carries the signal a few milliseconds forward, so the pedal answers the corner entry — not the telemetry packet that reported it.</p></article>
+      <article class="card"><h3>Split-band mix</h3><p>Low band to the shaker, high band to the pedal, crossfaded at the crossover — each device keeps the frequencies it's built for.</p></article>
+      <article class="card"><h3>Native + synthesized</h3><p>The game's own LFE and Haptics360's rendered effects run as independent branches under separate masters — blend or mute either.</p></article>
+      <article class="card"><h3>Replay &amp; reference</h3><p>Capture a session's telemetry and audition effects offline — design a cue without turning a wheel.</p></article>
+      <article class="card"><h3>Your rig, detected</h3><p>WASAPI output picker for the shaker, direct detection for the pedal — the panel shows what it found, nothing hidden.</p></article>
+    </div>
+  </section>
+
+  <!-- ============ 06 · CONTROL PANEL ============ -->
+  <section class="section" id="panel">
+    <header class="section-head">
+      <p class="kicker"><span class="kicker-num">06</span> Control panel</p>
+      <h2>A window that stays out of the way</h2>
+      <p class="lede">
+        A native dark control panel edits every effect with live preview and
+        test-fire buttons; a tray icon carries the master mute. The service
+        runs as a Windows task — it starts with the rig, not with a terminal.
+      </p>
+    </header>
+    <div class="panel-mock" aria-label="Control panel preview">
+      <div class="pm-sidebar">
+        <div class="pm-logo">H360</div>
+        <span class="pm-item is-active">Mixer</span>
+        <span class="pm-item">Effects</span>
+        <span class="pm-item">Pedal</span>
+        <span class="pm-item">Devices</span>
+        <span class="pm-item">Monitor</span>
+      </div>
+      <div class="pm-main">
+        <div class="pm-card">
+          <div class="pm-card-head"><span>Engine sound</span><span class="mono-dim">bk.engine_sound</span></div>
+          <div class="pm-slider"><i style="width:64%"></i></div>
+          <div class="pm-meta mono-dim">gain 128% · freq 34–55 Hz · enabled</div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-card-head"><span>ABS active</span><span class="mono-dim">pedal.abs</span></div>
+          <div class="pm-slider warm"><i style="width:45%"></i></div>
+          <div class="pm-meta mono-dim">gain 90% · 30 Hz · pulse 60 ms</div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-card-head"><span>Road impacts</span><span class="mono-dim">pedal.road_impacts</span></div>
+          <div class="pm-slider"><i style="width:72%"></i></div>
+          <div class="pm-meta mono-dim">gain 110% · 20 Hz · sens 25</div>
+        </div>
+        <div class="pm-test mono-dim">preview &amp; test-fire per effect — audition before you commit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 · STATUS ============ -->
+  <section class="section soon" id="status">
+    <div class="soon-card">
+      <p class="kicker"><span class="kicker-num">07</span> Status</p>
+      <h2>In active development</h2>
+      <p>
+        Haptics360 is being refined on a real rig — Windows installer in
+        preview, pedal integration verified in software and being proven on
+        hardware. This page is the public face of the project.
+      </p>
+      <div class="soon-actions">
+        <a class="btn btn-primary" href="https://github.com/Cooooked/Haptics360" rel="noopener">Project page</a>
+        <a class="btn btn-ghost" href="https://buymeacoffee.com/xqbsit" rel="noopener">Buy me a coffee</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <img src="assets/img/h360-logo-450x76.png" alt="Haptics360" width="180" height="30">
+      <p class="footer-tag">Haptics360 — feel the track.</p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="https://github.com/Cooooked/Haptics360" rel="noopener">Project page</a>
+        <a href="https://buymeacoffee.com/xqbsit" rel="noopener">Buy me a coffee</a>
+      </nav>
+      <p class="footer-note">Haptics360 is in development. This site is a teaser — it describes what the product does, not how it works.</p>
+    </div>
+  </footer>
+
+</main>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>
