@@ -520,3 +520,8 @@ img { display: block; max-width: 100%; }
 /* monitor level meters */
 .pm-meter{height:5px;background:#0c0d10;border-radius:3px;margin-top:10px;overflow:hidden}
 .pm-meter i{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--accent),#ffb066);border-radius:3px;transition:width .25s ease}
+
+/* saved-mix delete affordance */
+.bp-custom-wrap{position:relative;display:inline-flex;align-items:center}
+.bp-custom-del{position:absolute;top:-7px;right:-7px;width:16px;height:16px;border-radius:50%;background:#2a2d33;color:var(--dim);border:1px solid var(--line);font-size:11px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.bp-custom-del:hover{color:#ff6b5e;border-color:#ff6b5e}

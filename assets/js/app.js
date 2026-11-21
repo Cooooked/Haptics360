@@ -443,8 +443,10 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   }
   var currentId = null;
   function renderCustom() {
-    group.querySelectorAll(".bp-custom").forEach(function (c) { c.remove(); });
+    group.querySelectorAll(".bp-custom-wrap").forEach(function (c) { c.remove(); });
     custom.forEach(function (p, i) {
+      var wrap = document.createElement("span");
+      wrap.className = "bp-custom-wrap";
       var b = document.createElement("button");
       b.type = "button";
       b.className = "bp-chip bp-custom";
@@ -454,7 +456,21 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
       b.addEventListener("click", function () {
         currentId = i; applySnap(p.values);
       });
-      saveBtn.parentNode.insertBefore(b, saveBtn);
+      var x = document.createElement("button");
+      x.type = "button";
+      x.className = "bp-custom-del";
+      x.textContent = "×";
+      x.setAttribute("aria-label", "Delete " + p.name);
+      x.title = "Delete saved mix";
+      x.addEventListener("click", function () {
+        custom.splice(i, 1);
+        try { localStorage.setItem(KEY, JSON.stringify(custom)); } catch (e) {}
+        if (currentId === i) currentId = null;
+        else if (currentId != null && currentId > i) currentId--;
+        renderCustom();
+      });
+      wrap.appendChild(b); wrap.appendChild(x);
+      saveBtn.parentNode.insertBefore(wrap, saveBtn);
     });
   }
   saveBtn.addEventListener("click", function () {
