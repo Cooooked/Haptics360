@@ -455,3 +455,10 @@ img { display: block; max-width: 100%; }
 .faq-item[open] summary::after{transform:rotate(45deg)}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item p{margin:0;padding:0 20px 18px;color:var(--muted);font-size:14.5px;line-height:1.6}
+
+/* runnable tune commands */
+.cmdline{cursor:pointer;border-radius:3px;transition:background .15s}
+.cmdline:hover{background:rgba(232,132,60,.10)}
+.cmd-hint{margin:10px 0 0}
+.fx-flash{animation:fxflash .5s}
+@keyframes fxflash{0%{background:rgba(232,132,60,.25)}100%{background:transparent}}

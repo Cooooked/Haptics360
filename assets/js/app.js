@@ -239,3 +239,26 @@
     }
   });
 })();
+
+/* Runnable tune commands — clicking applies the delta to matching bench sliders. */
+document.querySelectorAll(".cmdline").forEach(function (line) {
+  line.addEventListener("click", function () {
+    var apply = line.dataset.apply;
+    if (!apply) return;
+    apply.split(";").forEach(function (pair) {
+      var kv = pair.split(":");
+      var knob = kv[0], delta = parseInt(kv[1], 10);
+      var el = document.querySelector('.fx[data-knob="' + knob + '"]');
+      if (!el || isNaN(delta)) return;
+      el.value = Math.max(0, Math.min(200, (+el.value) + delta));
+      var lab = el.closest(".ctl").querySelector(".fx-val");
+      if (lab) lab.textContent = el.value + "%";
+      el.dispatchEvent(new Event("input"));
+      var ctl = el.closest(".ctl");
+      ctl.classList.remove("fx-flash");
+      void ctl.offsetWidth;
+      ctl.classList.add("fx-flash");
+    });
+    document.getElementById("bench").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+});
