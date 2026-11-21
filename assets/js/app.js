@@ -331,7 +331,11 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     views.forEach(function (v) { v.classList.toggle("is-active", v.dataset.view === view); });
   }
   items.forEach(function (item) {
-    item.addEventListener("click", function () { show(item.dataset.view); });
+    item.setAttribute("aria-pressed", item.classList.contains("is-active") ? "true" : "false");
+    item.addEventListener("click", function () {
+      show(item.dataset.view);
+      items.forEach(function (i) { i.setAttribute("aria-pressed", i === item ? "true" : "false"); });
+    });
   });
   // terminal commands can jump to a pane (e.g. monitor --watch)
   document.querySelectorAll(".cmdline[data-goto]").forEach(function (el) {
