@@ -454,3 +454,19 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   });
   renderCustom();
 })();
+
+/* Bench reset — restore Reference profile and clear channel mutes. */
+(function () {
+  var btn = document.getElementById("benchReset");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var ref = document.querySelector('.bp-chip[data-prof="reference"]');
+    if (ref) ref.click();
+    ["muteBtn", "muteBk", "mutePd"].forEach(function (id) {
+      var b = document.getElementById(id);
+      if (b && b.getAttribute("aria-pressed") === "true") b.click();
+    });
+    btn.classList.add("is-done"); btn.textContent = "RESET";
+    setTimeout(function () { btn.classList.remove("is-done"); btn.textContent = "RESET BENCH"; }, 1400);
+  });
+})();
