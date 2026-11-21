@@ -536,3 +536,11 @@ input[type="range"]:focus-visible{outline-offset:4px}
 button.pm-prof{width:100%;text-align:left;background:var(--panel-2);color:inherit;font-family:inherit;cursor:pointer;appearance:none}
 button.pm-prof .pm-card-head,button.pm-prof .pm-meta{pointer-events:none}
 button.pm-prof:hover{border-color:var(--accent)}
+
+/* chain signal flow */
+.chain-link{position:relative}
+.chain-link::after{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:var(--accent);opacity:0;animation:chainPkt 2.8s linear infinite}
+.chain-link:nth-of-type(3)::after{animation-delay:.7s}
+.chain-link:nth-of-type(5)::after{animation-delay:1.4s}
+@keyframes chainPkt{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 7px);opacity:0}}
+@media (prefers-reduced-motion: reduce){.chain-link::after{animation:none;opacity:0}}
