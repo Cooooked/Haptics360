@@ -411,3 +411,12 @@ img { display: block; max-width: 100%; }
 .hero-logo { height: 37px; width: auto; margin-bottom: 34px; filter: drop-shadow(0 4px 24px rgba(232,132,60,.25)); }
 @media (max-width: 900px) { .fx-groups { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .fx-groups { grid-template-columns: 1fr; } }
+
+/* requirements strip */
+.req-strip { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.req {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--border); border-radius: 20px; padding: 8px 16px;
+  background: var(--panel);
+}
