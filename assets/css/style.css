@@ -407,3 +407,5 @@ img { display: block; max-width: 100%; }
 }
 .fx-inspect b { color: var(--accent); font-weight: 500; }
 .fx-chip { cursor: default; }
+
+.hero-logo { height: 37px; width: auto; margin-bottom: 34px; filter: drop-shadow(0 4px 24px rgba(232,132,60,.25)); }
