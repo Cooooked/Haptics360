@@ -170,7 +170,7 @@
         <div class="fx-chips">
           <span class="fx-chip" data-spec="gain · freq band · load sensitivity">Engine sound</span><span class="fx-chip" data-spec="gain · freq_hz">RPM vibration</span>
           <span class="fx-chip" data-spec="gain · freq_hz · duration_ms">Gear shift</span><span class="fx-chip" data-spec="gain · freq_hz">Missed gear</span>
-          <span class="fx-chip" data-spec="gain · freq_hz">Gear grinding</span>
+          <span class="fx-chip" data-spec="gain · freq_hz">Gear grinding</span><span class="fx-chip" data-spec="joystick button mask">Manual shifter input</span>
         </div>
       </div>
       <div class="fx-group">
@@ -263,7 +263,7 @@ $ haptics360 monitor --watch</code></pre>
       <article class="card"><h3>Predictive playout</h3><p>A fitted predictor carries the signal a few milliseconds forward, so the pedal answers the corner entry — not the telemetry packet that reported it.</p></article>
       <article class="card"><h3>Split-band mix</h3><p>Low band to the shaker, high band to the pedal, crossfaded at the crossover — each device keeps the frequencies it's built for.</p></article>
       <article class="card"><h3>Native + synthesized</h3><p>The game's own LFE and Haptics360's rendered effects run as independent branches under separate masters — blend or mute either.</p></article>
-      <article class="card"><h3>Replay &amp; reference</h3><p>Capture a session's telemetry and audition effects offline — design a cue without turning a wheel.</p></article>
+      <article class="card"><h3>Replay &amp; reference</h3><p>Capture a session's telemetry at 360 Hz or replay a recorded one offline — audition effects and fit predictors without turning a wheel.</p></article>
       <article class="card"><h3>Your rig, detected</h3><p>WASAPI output picker for the shaker, direct detection for the pedal — the panel shows what it found, nothing hidden.</p></article>
     </div>
 
