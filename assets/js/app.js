@@ -179,7 +179,11 @@
                  pd_abs: "pd|abs", pd_lock: "pd|lock", pd_roadfx: "pd|roadfx" };
   document.querySelectorAll(".bp-chip").forEach(function (chip) {
     chip.addEventListener("click", function () {
-      document.querySelectorAll(".bp-chip").forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+      document.querySelectorAll(".bp-chip").forEach(function (c) {
+        var on = c === chip;
+        c.classList.toggle("is-active", on);
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+      });
       var p = PROFILES[chip.dataset.prof];
       Object.keys(FX_MAP).forEach(function (k) {
         var pair = FX_MAP[k].split("|");
@@ -459,9 +463,15 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
         el.dispatchEvent(new Event("input"));
       }
     });
-    document.querySelectorAll(".bp-chip").forEach(function (c) { c.classList.remove("is-active"); });
-    group.querySelector('[data-prof="__custom_' + currentId + '"]') &&
-      group.querySelector('[data-prof="__custom_' + currentId + '"]').classList.add("is-active");
+    document.querySelectorAll(".bp-chip").forEach(function (c) {
+      c.classList.remove("is-active");
+      c.setAttribute("aria-pressed", "false");
+    });
+    var cur = group.querySelector('[data-prof="__custom_' + currentId + '"]');
+    if (cur) {
+      cur.classList.add("is-active");
+      cur.setAttribute("aria-pressed", "true");
+    }
   }
   var currentId = null;
   function renderCustom() {
