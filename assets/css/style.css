@@ -462,3 +462,9 @@ img { display: block; max-width: 100%; }
 .cmd-hint{margin:10px 0 0}
 .fx-flash{animation:fxflash .5s}
 @keyframes fxflash{0%{background:rgba(232,132,60,.25)}100%{background:transparent}}
+
+/* control-panel mock — working tabs */
+.pm-item{font:inherit;cursor:pointer}
+.pm-view{display:none}
+.pm-view.is-active{display:block}
+.pm-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(88,201,139,.35);border-radius:3px;padding:2px 7px}

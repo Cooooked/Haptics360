@@ -314,29 +314,54 @@ $ haptics360 monitor --watch</code></pre>
     <div class="panel-mock" aria-label="Control panel preview">
       <div class="pm-sidebar">
         <div class="pm-logo">H360</div>
-        <span class="pm-item is-active">Mixer</span>
-        <span class="pm-item">Effects</span>
-        <span class="pm-item">Pedal</span>
-        <span class="pm-item">Devices</span>
-        <span class="pm-item">Monitor</span>
+        <button class="pm-item is-active" data-view="mixer" type="button">Mixer</button>
+        <button class="pm-item" data-view="effects" type="button">Effects</button>
+        <button class="pm-item" data-view="pedal" type="button">Pedal</button>
+        <button class="pm-item" data-view="devices" type="button">Devices</button>
+        <button class="pm-item" data-view="monitor" type="button">Monitor</button>
       </div>
       <div class="pm-main">
-        <div class="pm-card">
-          <div class="pm-card-head"><span>Engine sound</span><span class="mono-dim">bk.engine_sound</span></div>
-          <div class="pm-slider"><i style="width:64%"></i></div>
-          <div class="pm-meta mono-dim">gain 128% · freq 34–55 Hz · enabled</div>
+        <div class="pm-view is-active" data-view="mixer">
+          <div class="pm-card">
+            <div class="pm-card-head"><span>Engine sound</span><span class="mono-dim">bk.engine_sound</span></div>
+            <div class="pm-slider"><i style="width:64%"></i></div>
+            <div class="pm-meta mono-dim">gain 128% · freq 34–55 Hz · enabled</div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-head"><span>ABS active</span><span class="mono-dim">pedal.abs</span></div>
+            <div class="pm-slider warm"><i style="width:45%"></i></div>
+            <div class="pm-meta mono-dim">gain 90% · 30 Hz · pulse 60 ms</div>
+          </div>
+          <div class="pm-card">
+            <div class="pm-card-head"><span>Road impacts</span><span class="mono-dim">pedal.road_impacts</span></div>
+            <div class="pm-slider"><i style="width:72%"></i></div>
+            <div class="pm-meta mono-dim">gain 110% · 20 Hz · sens 25</div>
+          </div>
+          <div class="pm-test mono-dim">preview &amp; test-fire per effect — audition before you commit</div>
         </div>
-        <div class="pm-card">
-          <div class="pm-card-head"><span>ABS active</span><span class="mono-dim">pedal.abs</span></div>
-          <div class="pm-slider warm"><i style="width:45%"></i></div>
-          <div class="pm-meta mono-dim">gain 90% · 30 Hz · pulse 60 ms</div>
+        <div class="pm-view" data-view="effects">
+          <div class="pm-card"><div class="pm-card-head"><span>engine_sound</span><span class="mono-dim">powertrain</span></div><div class="pm-slider"><i style="width:64%"></i></div><div class="pm-meta mono-dim">gain 128% · on</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>gear_shift</span><span class="mono-dim">powertrain</span></div><div class="pm-slider"><i style="width:38%"></i></div><div class="pm-meta mono-dim">gain 76% · on</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>road_vibration</span><span class="mono-dim">road</span></div><div class="pm-slider"><i style="width:52%"></i></div><div class="pm-meta mono-dim">gain 104% · on</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>traction_loss</span><span class="mono-dim">contact</span></div><div class="pm-slider"><i style="width:30%"></i></div><div class="pm-meta mono-dim">gain 60% · muted</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>custom formula</span><span class="mono-dim">custom</span></div><div class="pm-slider warm"><i style="width:44%"></i></div><div class="pm-meta mono-dim">gain 88% · on</div></div>
         </div>
-        <div class="pm-card">
-          <div class="pm-card-head"><span>Road impacts</span><span class="mono-dim">pedal.road_impacts</span></div>
-          <div class="pm-slider"><i style="width:72%"></i></div>
-          <div class="pm-meta mono-dim">gain 110% · 20 Hz · sens 25</div>
+        <div class="pm-view" data-view="pedal">
+          <div class="pm-card"><div class="pm-card-head"><span>ABS pulse</span><span class="mono-dim">pedal.abs</span></div><div class="pm-slider warm"><i style="width:45%"></i></div><div class="pm-meta mono-dim">gain 90% · 30 Hz · 60 ms</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Wheel lock</span><span class="mono-dim">pedal.lock</span></div><div class="pm-slider warm"><i style="width:30%"></i></div><div class="pm-meta mono-dim">gain 60% · 32 Hz</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Kerb / road</span><span class="mono-dim">pedal.road_impacts</span></div><div class="pm-slider warm"><i style="width:72%"></i></div><div class="pm-meta mono-dim">gain 110% · 20 Hz · sens 25</div></div>
+          <div class="pm-test mono-dim">pedal channel — direct motor drive, no LFE path</div>
         </div>
-        <div class="pm-test mono-dim">preview &amp; test-fire per effect — audition before you commit</div>
+        <div class="pm-view" data-view="devices">
+          <div class="pm-card"><div class="pm-card-head"><span>ButtKicker</span><span class="pm-badge ok">connected</span></div><div class="pm-meta mono-dim">WASAPI output · shaker band · master gain 100%</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>P-HPR pedal</span><span class="pm-badge ok">connected</span></div><div class="pm-meta mono-dim">direct drive · pedal band · force limited</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Telemetry source</span><span class="pm-badge ok">live</span></div><div class="pm-meta mono-dim">360 Hz shared stream · 4 Hz monitor</div></div>
+        </div>
+        <div class="pm-view" data-view="monitor">
+          <div class="pm-card"><div class="pm-card-head"><span>Shaker out</span><span class="pm-badge ok">-12 dB</span></div><div class="pm-meta mono-dim">rms -18.4 · peak -6.1 · clipping 0%</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Pedal out</span><span class="pm-badge ok">-9 dB</span></div><div class="pm-meta mono-dim">rms -15.2 · peak -3.8 · force 62%</div></div>
+          <div class="pm-card"><div class="pm-card-head"><span>Pipeline</span><span class="mono-dim">engine</span></div><div class="pm-meta mono-dim">360 Hz in · 0.8 ms playout · queue 2%</div></div>
+        </div>
       </div>
     </div>
   </section>

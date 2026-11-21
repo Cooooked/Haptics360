@@ -262,3 +262,15 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
     document.getElementById("bench").scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 });
+
+/* Control-panel mock — sidebar tabs swap the preview pane. */
+(function () {
+  var items = document.querySelectorAll(".pm-item");
+  var views = document.querySelectorAll(".pm-view");
+  items.forEach(function (item) {
+    item.addEventListener("click", function () {
+      items.forEach(function (i) { i.classList.toggle("is-active", i === item); });
+      views.forEach(function (v) { v.classList.toggle("is-active", v.dataset.view === item.dataset.view); });
+    });
+  });
+})();
