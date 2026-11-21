@@ -516,3 +516,7 @@ img { display: block; max-width: 100%; }
 @media(max-width:640px){.xover__body{grid-template-columns:1fr}.xo-lane{grid-template-columns:1fr;gap:6px}}
 .fx-reset{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:4px;padding:4px 10px;margin-left:10px;cursor:pointer;vertical-align:baseline}
 .fx-reset:hover{color:var(--accent);border-color:var(--accent)}
+
+/* monitor level meters */
+.pm-meter{height:5px;background:#0c0d10;border-radius:3px;margin-top:10px;overflow:hidden}
+.pm-meter i{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--accent),#ffb066);border-radius:3px;transition:width .25s ease}

@@ -360,12 +360,16 @@ document.querySelectorAll(".cmdline").forEach(function (line) {
   var vals = pane ? pane.querySelectorAll(".live-v") : [];
   if (!pane || !vals.length) return;
   var timer = null;
+  var mBk = document.getElementById("meterBk");
+  var mPd = document.getElementById("meterPd");
   function tick() {
     vals.forEach(function (el) {
       var base = parseFloat(el.dataset.v), j = parseFloat(el.dataset.j || "1"), dec = +(el.dataset.d || "0");
       var v = base + (Math.random() * 2 - 1) * j;
       el.textContent = dec ? v.toFixed(dec) : String(Math.round(v));
     });
+    if (mBk) mBk.style.width = (30 + Math.random() * 45) + "%";
+    if (mPd) mPd.style.width = (35 + Math.random() * 50) + "%";
   }
   function sync() {
     var on = pane.classList.contains("is-active") && !document.hidden;
